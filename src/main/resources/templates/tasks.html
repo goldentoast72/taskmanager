@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Aufgabenliste</title>
+</head>
+<body>
+<h1>Aufgabenliste</h1>
+
+<!-- Formular zum Hinzufügen einer neuen Aufgabe -->
+<form action="/tasks" method="post">
+    <input type="text" name="description" placeholder="Neue Aufgabe" required>
+    <button type="submit">Hinzufügen</button>
+</form>
+
+<!-- Liste der Aufgaben -->
+<ul>
+    <li th:each="task : ${tasks}">
+        <span th:text="${task.description}"></span>
+        <span th:if="${task.completed}"> (Erledigt)</span>
+        <form th:if="${!task.completed}" action="/tasks/{id}/complete" method="post" th:action="@{/tasks/{id}/complete(id=${task.id})}">
+            <button type="submit">Erledigt</button>
+        </form>
+    </li>
+</ul>
+</body>
+</html>

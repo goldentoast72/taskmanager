@@ -20,6 +20,9 @@
         <form th:if="${!task.completed}" action="/tasks/{id}/complete" method="post" th:action="@{/tasks/{id}/complete(id=${task.id})}">
             <button type="submit">Erledigt</button>
         </form>
+        <form th:if="${!task.completed}" action="/tasks/{id}" th:method="delete" th:action="@{/tasks/{id}(id=${task.id})}">
+            <button type="submit">Löschen</button>
+        </form>
     </li>
 </ul>
 <footer>

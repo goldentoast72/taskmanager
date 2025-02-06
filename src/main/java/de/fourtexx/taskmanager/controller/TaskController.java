@@ -39,4 +39,12 @@ public class TaskController {
         taskRepository.save(task);
         return "redirect:/tasks";
     }
+
+    @DeleteMapping("/{id}")
+    public String deleteTask(@PathVariable Long id) {
+        Task task = taskRepository.findById(id).orElseThrow();
+        if(task != null)
+            taskRepository.delete(task);
+        return "redirect:/tasks";
+    }
 }
